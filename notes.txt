@@ -24,6 +24,8 @@ $lte: Less than or equal to
 $in: In an array
 
 $nin: Not in an array
+
+ex :- db.collection.find({ age: { $gte: 18 } });
 ===========================================================================================================
 🚀 Logical Operators
 $and: Joins query clauses with logical AND
@@ -33,6 +35,8 @@ $or: Joins query clauses with logical OR
 $not: Inverts the effect of a query expression
 
 $nor: Joins query clauses with logical NOR
+
+ex : -db.collection.find({ $or: [{ age: { $lt: 18 } }, { status: "inactive" }] });
 ===========================================================================================================
 🚀 Element Operators
 $exists: Checks if a field exists
