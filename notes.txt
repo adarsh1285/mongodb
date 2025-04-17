@@ -1,0 +1,83 @@
+Difference bitween sql and nosql : -
+==========================================================================================================
+sql                        nosql
+----                       -----
+database                   database
+table                      collection
+row                        documents
+column                     fields
+===========================================================================================================
+🟢 Query Operators (used in find, findOne, etc.)
+Comparison Operators
+$eq: Equal to
+
+$ne: Not equal to
+
+$gt: Greater than
+
+$gte: Greater than or equal to
+
+$lt: Less than
+
+$lte: Less than or equal to
+
+$in: In an array
+
+$nin: Not in an array
+===========================================================================================================
+🚀 Logical Operators
+$and: Joins query clauses with logical AND
+
+$or: Joins query clauses with logical OR
+
+$not: Inverts the effect of a query expression
+
+$nor: Joins query clauses with logical NOR
+===========================================================================================================
+🚀 Element Operators
+$exists: Checks if a field exists
+
+$type: Checks field type
+
+=========================================================================================================
+🚀 valuation Operators
+$regex: Matches a regular expression
+
+$expr: Uses aggregation expressions in queries
+
+$mod: Performs modulo operation
+
+$text: Performs text search
+===========================================================================================================
+🚀 Field Update
+$set: Sets the value of a field
+
+$unset: Removes a field
+
+$inc: Increments a field by a value
+
+$mul: Multiplies a field
+
+$rename: Renames a field
+
+$min / $max: Only updates if the new value is smaller/larger
+============================================================================================================
+🚀 Array Update
+$push: Adds to an array
+
+$pull: Removes from an array
+
+$addToSet: Adds to array if not present
+
+$pop: Removes first/last element
+
+$each: Modifies multiple elements with $push
+
+$position, $slice, $sort: Array modifiers
+===========================================================================================================
+🔴 Aggregation Operators (used in aggregation pipelines)
+$match, $group, $project, $sort, $limit, $skip
+
+$sum, $avg, $count, $min, $max
+
+$cond, $ifNull, $concat, $substr, $toUpper, $toLower
