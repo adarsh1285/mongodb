@@ -1,0 +1,18 @@
+✅ What is MongoDB and how it different with traditional RDBMS : -
+MongoDB is a NoSQL database that stores data in JSON-like documents (called BSON). Unlike relational
+databases (RDBMS) like MySQL or PostgreSQL, MongoDB does not use tables and rows, 
+but rather collections and documents. It is schema-less, making it flexible and easy to scale horizontally.
+
+✅ What is Document in MongoDB : -
+Document is a single record in MongoDB. It is a BSON object notation that contain key-value pairs .
+Example : -
+
+{
+  "_id": "123",
+  "name": "Adarsh",  // this is a document.
+  "age": 19,
+  "city": "Lucknow"
+}
+
+✅ what is collection in MongoDB : -
+Collection is a group of multiple Douments.

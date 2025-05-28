@@ -1,0 +1,7 @@
+🔁 1. What is the Aggregation Framework in MongoDB? How does it differ from find()?
+Aggregation is used to process large amounts of data and return computed results.
+ It uses a pipeline concept (like UNIX pipes), allowing you to transform and combine data.
+
+find() is for querying documents.
+
+aggregate() is used for operations like $group, $sum, $avg, $project.
