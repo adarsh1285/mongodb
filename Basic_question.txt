@@ -16,3 +16,11 @@ Example : -
 
 ✅ what is collection in MongoDB : -
 Collection is a group of multiple Douments.
+we can understand it with help of sql query 
+
+  Nosql        sql
+data base => data base
+tables     => collections
+row and column => document 
+
+we can store multiple data in collection . for example 
