@@ -1,0 +1,53 @@
+Lookup : 
+------------
+MongoDB me $lookup ek aggregation stage hai jo join ka kaam karta hai — jaise relational database
+ (MySQL, SQL Server) me JOIN hota hai.
+
+-------------------------------------------------------------------
+Syntax of $Lookup : 
+
+{
+  $lookup: {
+    from: "dusra_collection",        // jis collection se data lana hai
+    localField: "apna_field",        // current collection ka field
+    foreignField: "dusre_collection_ka_field", // jis field se match karna hai
+    as: "result_name"                // output me result kis naam se dikhana hai (array form me)
+  }
+}
+
+🧠 Example:
+
+🧾 Collection 1: orders
+
+{ _id: 1, item: "book", customer_id: 101 }
+{ _id: 2, item: "pen", customer_id: 102 }
+
+
+🧾 Collection 2: customers
+
+{ _id: 101, name: "Adarsh" }
+{ _id: 102, name: "Rahul" }
+🔗 $lookup query:
+
+Apply $lookup : 
+------------------
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customer_id",
+      foreignField: "_id",
+      as: "customer_info"
+    }
+  }
+])
+
+
+📋 Output:
+--------------------
+{
+  _id: 1,
+  item: "book",
+  customer_id: 101,
+  customer_info: [{ _id: 101, name: "Adarsh" }]
+}
