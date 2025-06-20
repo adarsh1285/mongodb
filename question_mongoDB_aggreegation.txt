@@ -1,0 +1,209 @@
+
+$group Aggregation pipelines
+===============================
+
+1) List the top five most common favorite fruits among them
+
+[
+  {
+    $group : {
+      _id : "$favoriteFruits",
+      totalNumberofFruits : {
+        $sum : 1         $sum : 1 ka use karke hum same collection ki counting kar sakte hai
+      }
+    }
+  },
+  {
+    $sort : {
+      totalNumberofFruits : -1   -1 = incresing order and 1 = decresign order 
+    }
+  },
+  {
+    $limit : 2
+  }
+]
+--------------------------------------------------------------------
+2) Find the total number of mate and female 
+
+[
+  $group : {
+    _id : "$gender",
+    number_of_male&female : {
+      $sum : 1
+    }
+  }
+]
+------------------------------------------------------------------------
+3) which country has the heighest registered users ? 
+ 
+ [
+  $group : {
+    _id : "$company.location.country",
+    totalNumberOfUsers : {
+      $sum : 1
+    }
+  },
+  {
+    $sort : {
+      totalNumberOfUsers : -1
+    }
+  },
+  {
+    $limit : 1
+  }
+ ]
+
+------------------------------------------------------------------
+4) List of all unique eye color in the collection ?
+ 
+ [
+  {
+    $group : {
+      _id : "$eyeColor"
+    }
+  }
+ ]
+
+----------------------------------------------------------------------
+ 5) what is avarage number of tag as per user ? 
+
+ [
+  {
+    $unwind : "$tags"      unwind ka use tk karte hai jb collection ke andar array ke sath oparation karna ho 
+  },
+  {
+    $group : "_id",
+    totalNumberOftags: {
+      $sum : 1
+    }
+  },
+  {
+    $group : {
+      _id : null,
+      avgOftags : {
+        $avg : totalNumberOftags
+      }
+    }
+  }
+ ]
+ ------------------------------------------------------------------------
+ 6) how many users have "enim" as one of thier tags
+
+ [
+  {
+    $match : {
+      tags : "enim"
+    }
+  }, 
+  {
+    $count : "string"
+  }
+ ]
+
+---------------------------------------------------------------------------
+
+7) what is the name and age of users who are inactive and have "velit" as a tag ?
+
+[
+  {
+    $match : {
+      tags : "velit",
+      isActive : false
+    }
+  },
+  $project : {     Project ka use ham tab karte hai jab hame kisi field ko display karana hota hai
+    name : 1, age : 1   
+  }
+]
+
+--------------------------------------------------------------------------
+
+8) How many users have a phone number starting with ' +1 (940)'?
+ 
+ [
+  {
+    $match : {
+      "$company.phone" : ' +1 (940)'
+    }
+  },
+  {
+    $count : "nameofspecialusers"
+  }
+ ]
+
+ --------------------------------------------------------------------------
+
+ 9) How many users registered most recentally 
+
+ [
+  {
+    $short : {
+      "registered" : -1
+    }
+  },
+  {
+    $limit : 1
+  },
+  {
+    $project : {
+      name : 1,
+      registered : 1,
+      favoriteFruits : 1 
+    }
+  }
+ ]
+-----------------------------------------------------------------------
+ 9) Categorize users with their favorite fruits
+  
+  [
+    $group : {
+      _id : "$favoriteFruits",
+      users : { $push : "$name" }
+    }
+  ]
+-------------------------------------------------------------------
+
+  10) How many users has "ad" as the sencond tag in their tags 
+   [
+    {
+      $match : {
+        "tags.1" : "ad",
+      }
+    },
+    {
+      $count : "usersWhoHas"ad"atScondPositionTags"
+    }
+   ]
+-------------------------------------------------------------------
+
+11) Find users who have both "anim" and "id" as their tag
+
+[
+  {
+    $match : {
+      tags : {$all ["anim" , "id"]}
+    }
+  },
+  {
+    $count : users who have both "anim" and "id" ,
+  }
+]
+
+----------------------------------------------------------------------
+12) How many users who lived in USA 
+
+[
+  {
+    $match : {
+      "company.location.country" : "USA"
+    },
+    {
+      $group : {
+        _id : null, 
+        users : {
+          $sum : 1
+        }
+      }
+    }
+  }
+]
