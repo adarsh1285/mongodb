@@ -23,7 +23,7 @@ $group Aggregation pipelines
   }
 ]
 --------------------------------------------------------------------
-2) Find the total number of mate and female 
+2) Find the total number of male and female 
 
 [
   $group : {
